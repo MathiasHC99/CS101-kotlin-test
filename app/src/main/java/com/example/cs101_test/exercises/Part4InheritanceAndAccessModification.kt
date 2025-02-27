@@ -10,7 +10,30 @@ object Part4InheritanceAndAccessModification {
     // Create 2 classes (WashingMachine and Refrigerator) that extend the Appliance class
     //      and add a method to show/print their unique features e.g. has a quick wash feature (showFeatures).
     //      The showFeatures method must print something and not be blank, but you can choose what you want it to print!
+open class Appliance(val brand: String, val powerConsumption: Double, var isOn: Boolean) {
+    fun turnOn() {
+        isOn = true
+    }
 
+    fun turnOff() {
+        isOn = false
+    }
+
+        override fun toString(): String {
+            return "brand: $brand, powerConsumption: $powerConsumption, isOn: $isOn"
+        }
+
+class WashingMachine(brand: String, powerConsumption: Double, isOn: Boolean) : Appliance(brand,powerConsumption, isOn) {
+    fun showFeatures() {
+        println("Quick wash feature")
+    }
+}
+class Refrigerator(brand: String, powerConsumption: Double, isOn: Boolean) : Appliance(brand,powerConsumption, isOn) {
+    fun showFeatures() {
+        println("Fast cooling feature")
+    }
+}
+}
 
     // ---------------------- EXERCISE 2
     // Create a base class called Employee with properties: name, position, and salary
@@ -19,6 +42,33 @@ object Part4InheritanceAndAccessModification {
     // Implement the method work() for all classes, which prints a message indicating the type of work the employee is doing
     // E.g. an Employee.work() should print one thing and Developer.work() another
     // The work() method must print something and not be blank, but you can choose what you want it to print!
+    open class Employee(val name: String, val position: String, val salary: Double) {
+open fun work() {
+    println("$name is working in the position of $position")
+}}
+
+    class Manager(name: String, position: String, salary: Double, val department: String) : Employee(name, position, salary) {
+
+        override fun work() {
+            println("$name is managing the $department department.")
+        }
+    }
+
+    class Developer(name: String, position: String, salary: Double, val programmingLanguage: String) : Employee(name, position, salary) {
+
+        override fun work() {
+            println("$name is developing software using $programmingLanguage.")
+        }
+    }
+
+    class Intern(name: String, position: String, salary: Double, val school: String) : Employee(name, position, salary) {
+
+        override fun work() {
+            println("$name is an intern at $school.")
+        }
+    } //???
+
+
 
 
     // ---------------------- EXERCISE 3

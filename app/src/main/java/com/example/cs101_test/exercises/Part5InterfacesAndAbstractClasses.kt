@@ -1,5 +1,7 @@
 package com.example.cs101_test.exercises
 
+import java.time.Year
+
 object Part5InterfacesAndAbstractClasses {
 
     // ---------------------- EXERCISE 1
@@ -10,6 +12,36 @@ object Part5InterfacesAndAbstractClasses {
     //   - Series class should have an additional property: seasons
     //   - Documentary class should have an additional property: subject
     // Each subclass should override the playContent() method to print a message specific to its type
+
+
+    abstract class MediaContent(val title: String, val releaseYear: Int, val genre: String, val rating: Double) {
+        abstract fun playContent()
+    }
+
+
+    class Movie(title: String, releaseYear: Int, genre: String, rating: Double, val director: String) : MediaContent(title, releaseYear, genre, rating) {
+
+        override fun playContent() {
+            println("Playing the movie '$title' directed by $director.")
+        }
+    }
+
+
+    class Series(title: String, releaseYear: Int, genre: String, rating: Double, val seasons: Int) : MediaContent(title, releaseYear, genre, rating) {
+
+        override fun playContent() {
+            println("Playing the series '$title' with $seasons seasons.")
+        }
+    }
+
+
+    class Documentary(title: String, releaseYear: Int, genre: String, rating: Double, val subject: String) : MediaContent(title, releaseYear, genre, rating) {
+
+        override fun playContent() {
+            println("Playing the documentary '$title' about $subject.")
+        }
+    }
+
 
 
     // ---------------------- EXERCISE 2
@@ -24,6 +56,5 @@ object Part5InterfacesAndAbstractClasses {
     //      This means that for the CurrentAccount class, the withdraw function will be successful as long as
     //          the amount is less than or equal to the sum of the balance and overdraftLimit
     //      Should you try to withdraw more money than allowed, it should print: "Insufficient funds"
-
 
 }
